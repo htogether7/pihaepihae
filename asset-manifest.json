@@ -1,16 +1,15 @@
 {
   "files": {
     "main.css": "/pihaepihae/static/css/main.073c9b0a.css",
-    "main.js": "/pihaepihae/static/js/main.fe61f8dc.js",
+    "main.js": "/pihaepihae/static/js/main.77e518d5.js",
     "static/js/787.2663448d.chunk.js": "/pihaepihae/static/js/787.2663448d.chunk.js",
-    "static/media/logo.svg": "/pihaepihae/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/pihaepihae/index.html",
     "main.073c9b0a.css.map": "/pihaepihae/static/css/main.073c9b0a.css.map",
-    "main.fe61f8dc.js.map": "/pihaepihae/static/js/main.fe61f8dc.js.map",
+    "main.77e518d5.js.map": "/pihaepihae/static/js/main.77e518d5.js.map",
     "787.2663448d.chunk.js.map": "/pihaepihae/static/js/787.2663448d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.fe61f8dc.js"
+    "static/js/main.77e518d5.js"
   ]
 }

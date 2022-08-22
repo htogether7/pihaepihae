@@ -1,44 +1,16 @@
-import React from "react";
-// import { NaverMap } from 'react-naver-maps';
-import { NaverMap, RenderAfterNavermapsLoaded } from "react-naver-maps";
+import React, { useEffect } from "react";
 
-// var mapOptions = {
-//   center: new naver.maps.LatLng(37.3595704, 127.105399),
-//   zoom: 10,
-// };
-// var map = new naver.maps.Map("map", mapOptions);
-// const Map = () => {
-//   return <div id="map" style={{ width: "100%", height: "100vh" }}></div>;
-// };
-
-// const drawMap = () => {
-//   let map = new naver.maps.Map("map", {
-//     center: new naver.maps.LatLng(37.3595704, 127.105399),
-//     zoom: 10,
-//   });
-// };
+const { kakao } = window;
 const Map = () => {
-  //   console.dir(NaverMap);
-  return (
-    <RenderAfterNavermapsLoaded
-      ncpClientId={process.env.REACT_APP_MAP_CLIENT_ID}
-      error={<p>Maps Load Error</p>}
-      loading={<p>Maps Loading...</p>}
-      submodules={["geocoder"]}
-    >
-      <NaverMap
-        id="map"
-        mapDivId="react-naver-map"
-        style={{
-          width: "70%",
-          height: "400px",
-        }}
-        defaultCenter={{ lat: 37.49988, lng: 127.03856 }}
-        defaultZoom={16}
-        zoomControl={false} // 지도 zoom 허용
-      />
-    </RenderAfterNavermapsLoaded>
-  );
+  useEffect(() => {
+    const container = document.getElementById("map");
+    const options = {
+      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      level: 3,
+    };
+    const map = new kakao.maps.Map(container, options);
+  }, []);
+  return <div id="map" style={{ width: "500px", height: "500px" }}></div>;
 };
-
+// console.log(process.env.REACT_APP_MAP_CLIENT_ID);
 export default Map;

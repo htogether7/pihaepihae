@@ -1,35 +1,16 @@
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 const { kakao } = window;
 const Map = ({ searchAddress }) => {
-  // const [height, setHeight] = useState("first");
-
-  // console.log(height);
-  // fetch(
-  //
-  // )
-  //   .then((response) => console.log(response))
-  //   .catch((e) => console.log(e));
-  // console.log(process.env.REACT_APP_MAP_CLIENT_ID_GOOGLE);
+  const [height, setHeight] = useState("first");
+  const [centerPosition, setCenterPosition] = useState([]);
 
   useEffect(() => {
     // console.log(height);
-    // const promise = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       `https://maps.googleapis.com/maps/api/elevation/json?locations=39.7391536,-104.9847034&key=${process.env.REACT_APP_MAP_CLIENT_ID_GOOGLE}&sensor=false`
-    //     );
-    //     // .then((res) => {
-    //     //   setHeight(res);
-    //     //   console.log("hi");
-    //     // });
-    //     console.log("hey");
-    //   } catch (e) {
-    //     alert(e);
-    //   }
+    // console.log("hey");
+
     // console.log(response);
-    // };
     // console.log(promise);
     const container = document.getElementById("map");
     const options = {
@@ -42,6 +23,7 @@ const Map = ({ searchAddress }) => {
     kakao.maps.event.addListener(map, "click", (e) => {
       const latlng = e.latLng;
       const coords = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
+      map.setCenter(coords);
       console.log(coords);
       // map.setCenter(coords);
     });
@@ -52,11 +34,29 @@ const Map = ({ searchAddress }) => {
         // 정상적으로 검색이 완료됐으면
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         map.setCenter(coords);
+
+        const response = async () => {
+          try {
+            await axios
+              .get(
+                `https://api.open-elevation.com/api/v1/lookup?locations=${coords.getLat()},${coords.getLng()}`
+              )
+              .then((res) => {
+                setHeight(res.data.results[0].elevation);
+                console.log(height);
+              });
+          } catch (e) {
+            console.log(e);
+          }
+        };
+        response();
       });
+      // console.log("address changed");
     }
 
     // console.log(searchAddress);
   }, [searchAddress]);
+
   return <div id="map" style={{ width: "500px", height: "500px" }}></div>;
 };
 // console.log(process.env.REACT_APP_MAP_CLIENT_ID);

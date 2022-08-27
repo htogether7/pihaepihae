@@ -7,6 +7,7 @@ const MapContainer = () => {
   const [searchAddress, setSearchAddress] = useState("");
   const [height, setHeight] = useState("");
   const [centerPosition, setCenterPosition] = useState([33.450701, 126.570667]);
+  const [centerBoard, setCenterBoard] = useState([]);
   return (
     <>
       <Search setSearchAddress={setSearchAddress} />
@@ -17,6 +18,7 @@ const MapContainer = () => {
         setHeight={setHeight}
         centerPosition={centerPosition}
         setCenterPosition={setCenterPosition}
+        setCenterBoard={setCenterBoard}
       />
       <Info searchAddress={searchAddress} height={height} />
     </>

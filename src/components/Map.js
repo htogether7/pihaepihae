@@ -4,16 +4,17 @@ import React, { useEffect, useState } from "react";
 
 const { kakao } = window;
 // const CORS_ANYWHERE_ADDRESS = "";
-const CORS_ANYWHERE_ADDRESS = "https://cors-anywhere.herokuapp.com/";
+// const CORS_ANYWHERE_ADDRESS = "https://cors-anywhere.herokuapp.com/";
 // const CORS_ANYWHERE_ADDRESS = "https://cors.bridged.cc/";
 const Map = ({
   searchAddress,
   setSearchAddress,
-  height,
-  setHeight,
+  prediction,
+  setPrediction,
   setCenterPosition,
   centerPosition,
   setCenterBoard,
+  centerBoard,
 }) => {
   useEffect(() => {
     // console.log(height);
@@ -114,278 +115,6 @@ const Map = ({
             });
         };
         request();
-
-        // const request1 = new Promise((resolve, reject) => {
-        //   fetch(
-        //     CORS_ANYWHERE_ADDRESS +
-        //       `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //         coords.getLat() + drow[0]
-        //       },${coords.getLng() + dcol[0]}`
-        //   )
-        //     .then((res) => {
-        //       return res.json();
-        //     })
-        //     .then((data) => resolve(data));
-        // });
-
-        // const request2 = new Promise((resolve, reject) => {
-        //   fetch(
-        //     CORS_ANYWHERE_ADDRESS +
-        //       `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //         coords.getLat() + drow[0]
-        //       },${coords.getLng() + dcol[1]}`
-        //   )
-        //     .then((res) => {
-        //       return res.json();
-        //     })
-        //     .then((data) => resolve(data));
-        // });
-
-        // const request3 = new Promise((resolve, reject) => {
-        //   fetch(
-        //     CORS_ANYWHERE_ADDRESS +
-        //       `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //         coords.getLat() + drow[0]
-        //       },${coords.getLng() + dcol[2]}`
-        //   )
-        //     .then((res) => {
-        //       return res.json();
-        //     })
-        //     .then((data) => resolve(data));
-        // });
-        // const request4 = new Promise((resolve, reject) => {
-        //   fetch(
-        //     CORS_ANYWHERE_ADDRESS +
-        //       `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //         coords.getLat() + drow[0]
-        //       },${coords.getLng() + dcol[3]}`
-        //   )
-        //     .then((res) => {
-        //       return res.json();
-        //     })
-        //     .then((data) => resolve(data));
-        // });
-        // const request1 = async () => {
-        //   fetch(
-        //     CORS_ANYWHERE_ADDRESS +
-        //       `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //         coords.getLat() + drow[0]
-        //       },${coords.getLng() + dcol[0]}`
-        //   )
-        //     .then((res) => {
-        //       return res.json();
-        //     })
-        //     .then((data) => {
-        //       console.log(data);
-        //       return data;
-        //     })
-        //     .catch((e) => console.log(e));
-
-        //
-        // .then((res) => {
-        //   return res.json();
-        // })
-        // .then((data) => {
-        //   height_board[0][1] = data.results[0].elevation;
-        //   console.log(height_board);
-        //   return data;
-        // });
-        // };
-        // request1();
-        // const request2 = async () => {
-        //   await fetch(
-        //     CORS_ANYWHERE_ADDRESS +
-        //       `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //         coords.getLat() + drow[0]
-        //       },${coords.getLng() + dcol[1]}`
-        //   )
-        //     .then((res) => {
-        //       return res.json();
-        //     })
-        //     .then((data) => {
-        //       height_board[0][1] = data.results[0].elevation;
-        //       console.log(height_board);
-        //       return data;
-        //     })
-        //     .catch((e) => {
-        //       console.log(e);
-        //     });
-        // };
-        // Promise.all([request1, request2, request3]).then((data) =>
-        //   console.log(data)
-        // );
-        // console.log(a1, a2);
-        // // request2();
-
-        // const request3 = async () => {
-        //   try {
-        //     fetch(
-        //       CORS_ANYWHERE_ADDRESS +
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //           coords.getLat() + drow[0]
-        //         },${coords.getLng() + dcol[2]}`
-        //     )
-        //       .then((res) => {
-        //         return res.json();
-        //       })
-        //       .then((data) => {
-        //         height_board[0][2] = data.results[0].elevation;
-        //         console.log(height_board);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // // request3();
-
-        // const request4 = async () => {
-        //   try {
-        //     fetch(
-        //       CORS_ANYWHERE_ADDRESS +
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //           coords.getLat() + drow[0]
-        //         },${coords.getLng() + dcol[3]}`
-        //     )
-        //       .then((res) => {
-        //         return res.json();
-        //       })
-        //       .then((data) => {
-        //         height_board[0][3] = data.results[0].elevation;
-        //         console.log(height_board);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // request4();
-        // const request2 = async () => {
-        //   try {
-        //     await axios
-        //       .get(
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //           coords.getLat() + drow[0]
-        //         },${coords.getLng() + dcol[1]}`
-        //       )
-        //       // .then((res) => setHeight(res.data.results[0].elevation));
-        //       .then((res) => {
-        //         height_board[0][1] = res.data.results[0].elevation;
-        //         setHeight(res.data.results[0].elevation);
-        //         console.log(height_board);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // request2();
-
-        // const request3 = async () => {
-        //   try {
-        //     await axios
-        //       .get(
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //           coords.getLat() + drow[0]
-        //         },${coords.getLng() + dcol[2]}`
-        //       )
-        //       // .then((res) => setHeight(res.data.results[0].elevation));
-        //       .then((res) => {
-        //         height_board[0][2] = res.data.results[0].elevation;
-        //         setHeight(res.data.results[0].elevation);
-        //         console.log(height_board);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // request3();
-
-        // const request4 = async () => {
-        //   try {
-        //     await axios
-        //       .get(
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //           coords.getLat() + drow[0]
-        //         },${coords.getLng() + dcol[3]}`
-        //       )
-        //       // .then((res) => setHeight(res.data.results[0].elevation));
-        //       .then((res) => {
-        //         height_board[0][3] = res.data.results[0].elevation;
-        //         setHeight(res.data.results[0].elevation);
-        //         console.log(height_board);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // request4();
-
-        // const request5 = async () => {
-        //   try {
-        //     await axios
-        //       .get(
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //           coords.getLat() + drow[0]
-        //         },${coords.getLng() + dcol[4]}`
-        //       )
-        //       // .then((res) => setHeight(res.data.results[0].elevation));
-        //       .then((res) => {
-        //         height_board[0][4] = res.data.results[0].elevation;
-        //         setHeight(res.data.results[0].elevation);
-        //         console.log(height_board);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // request5();
-
-        // const request5 = async () => {
-        //   try {
-        //     await axios
-        //       .get(
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${
-        //           coords.getLat() + drow[0]
-        //         },${coords.getLng() + dcol[4]}`
-        //       )
-        //       // .then((res) => setHeight(res.data.results[0].elevation));
-        //       .then((res) => {
-        //         height_board[0][4] = res.data.results[0].elevation;
-        //         setHeight(res.data.results[0].elevation);
-        //         console.log(height_board);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // request5();
-
-        // const response = async () => {
-        //   try {
-        //     await axios.all([axios1, axios2, axios3]).then(
-        //       axios.spread((...responses) => {
-        //         // setHeight(res1.data.results[0].elevation);
-        //         console.log(responses);
-        //       })
-        //     );
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // response();
-        // const response = async () => {
-        //   try {
-        //     await axios
-        //       .get(
-        //         `https://api.open-elevation.com/api/v1/lookup?locations=${coords.getLat()},${coords.getLng()}`
-        //       )
-        //       .then((res) => {
-        //         setHeight(res.data.results[0].elevation);
-        //         // console.log(height);
-        //       });
-        //   } catch (e) {
-        //     console.log(e);
-        //   }
-        // };
-        // response();
       });
 
       // console.log("address changed");
@@ -394,6 +123,12 @@ const Map = ({
     // console.log(height_board);
     // console.log(centerPosition);
   }, [searchAddress]);
+
+  useEffect(() => {
+    if (centerBoard) {
+      setPrediction(centerBoard[12]);
+    }
+  }, [centerBoard]);
 
   return <div id="map" style={{ width: "500px", height: "500px" }}></div>;
 };

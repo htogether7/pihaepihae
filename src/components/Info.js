@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const { kakao } = window;
 
-const Info = ({ searchAddress, height }) => {
+const Info = ({ searchAddress, prediction }) => {
   const [damagePrediction, setDamagePrediction] = useState(0);
 
   useEffect(() => {
-    setDamagePrediction(height);
-  }, [searchAddress, height]);
+    setDamagePrediction(prediction);
+  }, [searchAddress, prediction]);
 
   if (searchAddress) {
     return (

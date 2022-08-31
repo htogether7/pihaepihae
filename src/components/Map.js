@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 // import axios from "axios";
 // import { resolvePath } from "react-router-dom";
 
@@ -16,6 +17,9 @@ const Map = ({
   setCenterBoard,
   centerBoard,
 }) => {
+  const location = useLocation();
+  const locationArray = location.pathname.split("/");
+  // if (location.pathname.sp)
   useEffect(() => {
     // console.log(height);
     // console.log("hey");
@@ -39,7 +43,7 @@ const Map = ({
       const coords = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
       setCenterPosition([latlng.getLat(), latlng.getLng()]);
       map.setCenter(coords);
-      console.log(coords);
+      // console.log(coords);
       // map.setCenter(coords);
       geocoder.coord2Address(
         coords.getLng(),

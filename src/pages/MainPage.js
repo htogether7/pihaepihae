@@ -3,12 +3,7 @@ import Search from "../components/Search";
 
 const { kakao } = window;
 
-const MainPage = ({
-  searchAddress,
-  setSearchAddress,
-  pageIndex,
-  setPageIndex,
-}) => {
+const MainPage = ({ searchAddress, setSearchAddress }) => {
   return (
     <Search searchAddress={searchAddress} setSearchAddress={setSearchAddress} />
   );

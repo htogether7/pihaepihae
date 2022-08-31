@@ -19,7 +19,6 @@ const Layout = () => {
 
 function App() {
   const [searchAddress, setSearchAddress] = useState("");
-  const [pageIndex, setPageIndex] = useState("/");
   return (
     <div className="App">
       <Routes>
@@ -30,19 +29,15 @@ function App() {
               <MainPage
                 searchAddress={searchAddress}
                 setSearchAddress={setSearchAddress}
-                pageIndex={pageIndex}
-                setPageIndex={setPageIndex}
               />
             }
           ></Route>
           <Route
-            path="result"
+            path="result/:address"
             element={
               <ResultPage
                 searchAddress={searchAddress}
                 setSearchAddress={setSearchAddress}
-                pageIndex={pageIndex}
-                setPageIndex={setPageIndex}
               />
             }
           ></Route>

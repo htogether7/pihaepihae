@@ -4,14 +4,24 @@ import Map from "../components/Map";
 import MapContainer from "../components/MapContainer";
 import Search from "../components/Search";
 
-const ResultPage = () => {
-  const [searchAddress, setSearchAddress] = useState("");
+const ResultPage = ({
+  searchAddress,
+  setSearchAddress,
+  pageIndex,
+  setPageIndex,
+}) => {
+  // const [searchAddress, setSearchAddress] = useState("");
   const [prediction, setPrediction] = useState("");
   const [centerPosition, setCenterPosition] = useState([33.450701, 126.570667]);
   const [centerBoard, setCenterBoard] = useState([]);
   return (
     <>
-      <Search setSearchAddress={setSearchAddress} />
+      <Search
+        searchAddress={searchAddress}
+        setSearchAddress={setSearchAddress}
+        pageIndex={pageIndex}
+        setPageIndex={setPageIndex}
+      />
       <Map
         searchAddress={searchAddress}
         setSearchAddress={setSearchAddress}

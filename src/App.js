@@ -5,6 +5,7 @@ import MapContainer from "./components/MapContainer";
 import { Routes, Route, Outlet } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
+import { useState } from "react";
 
 const Layout = () => {
   return (
@@ -17,12 +18,34 @@ const Layout = () => {
 };
 
 function App() {
+  const [searchAddress, setSearchAddress] = useState("");
+  const [pageIndex, setPageIndex] = useState("/");
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />}></Route>
-          <Route path="result" element={<ResultPage />}></Route>
+          <Route
+            index
+            element={
+              <MainPage
+                searchAddress={searchAddress}
+                setSearchAddress={setSearchAddress}
+                pageIndex={pageIndex}
+                setPageIndex={setPageIndex}
+              />
+            }
+          ></Route>
+          <Route
+            path="result"
+            element={
+              <ResultPage
+                searchAddress={searchAddress}
+                setSearchAddress={setSearchAddress}
+                pageIndex={pageIndex}
+                setPageIndex={setPageIndex}
+              />
+            }
+          ></Route>
         </Route>
       </Routes>
     </div>

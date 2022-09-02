@@ -6,6 +6,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
 import { useState } from "react";
+import styled, { createGlobalStyle } from "styled-components";
 
 const Layout = () => {
   return (
@@ -21,7 +22,8 @@ function App() {
   const [searchAddress, setSearchAddress] = useState("");
   const [searchValue, setSearchValue] = useState("");
   return (
-    <div className="App">
+    <FlexDiv className="App">
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
@@ -48,8 +50,33 @@ function App() {
           ></Route>
         </Route>
       </Routes>
-    </div>
+    </FlexDiv>
   );
 }
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    height:100%
+  }
+  body {
+    height: 100%
+  }
+  #root {
+    height: 100%
+  }
+
+  *{
+    font-family: 'Jua', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
+    }
+`;
+
+const FlexDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+`;
 
 export default App;

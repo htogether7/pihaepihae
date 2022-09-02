@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 const { kakao } = window;
 const Search = ({
   setSearchAddress,
@@ -78,11 +79,26 @@ const Search = ({
   };
   return (
     <form>
-      <input type="text" onChange={handleChange} />
-      <button onClick={handleSubmit}>제출</button>
+      <AddressInput type="text" onChange={handleChange} />
+      <SubmitButton onClick={handleSubmit}>제출</SubmitButton>
       {/* <input type="submit" onSubmit={handleSubmit} value="제출" /> */}
     </form>
   );
 };
+
+const AddressInput = styled.input`
+  /* background-color: black; */
+  width: 500px;
+  height: 50px;
+  margin-top: 20%;
+  font-size: 30px;
+  text-align: center;
+`;
+
+const SubmitButton = styled.button`
+  height: 50px;
+  width: 50px;
+  font-size: 15px;
+`;
 
 export default Search;

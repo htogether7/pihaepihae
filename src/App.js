@@ -19,6 +19,7 @@ const Layout = () => {
 
 function App() {
   const [searchAddress, setSearchAddress] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   return (
     <div className="App">
       <Routes>
@@ -29,6 +30,8 @@ function App() {
               <MainPage
                 searchAddress={searchAddress}
                 setSearchAddress={setSearchAddress}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
               />
             }
           ></Route>
@@ -38,6 +41,8 @@ function App() {
               <ResultPage
                 searchAddress={searchAddress}
                 setSearchAddress={setSearchAddress}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
               />
             }
           ></Route>

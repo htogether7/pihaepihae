@@ -8,8 +8,12 @@ const Search = ({
   setCenterPosition,
   centerBoard,
   setCenterBoard,
+  searchValue,
+  setSearchValue,
+  setSearchCount,
+  searchCount,
 }) => {
-  const [searchValue, setSearchValue] = useState("");
+  // const [searchValue, setSearchValue] = useState("");
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -54,7 +58,7 @@ const Search = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     const geocoder = new kakao.maps.services.Geocoder();
-
+    setSearchCount((prev) => prev + 1);
     // geocoder.addressSearch(searchAddress, (result, status) => {
     //   // 정상적으로 검색이 완료됐으면
     //   var coords = new kakao.maps.LatLng(result[0].y, result[0].x);

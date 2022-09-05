@@ -59,7 +59,7 @@ const Search = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     const geocoder = new kakao.maps.services.Geocoder();
-    setSearchCount((prev) => prev + 1);
+    // setSearchCount((prev) => prev + 1);
     // geocoder.addressSearch(searchAddress, (result, status) => {
     //   // 정상적으로 검색이 완료됐으면
     //   var coords = new kakao.maps.LatLng(result[0].y, result[0].x);

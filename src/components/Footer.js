@@ -6,9 +6,8 @@ const Footer = () => {
 };
 
 const FooterDiv = styled.div`
-  /* position: fixed;
+  position: fixed;
   bottom: 0;
-  left: 50%; */
   margin-top: auto;
 `;
 

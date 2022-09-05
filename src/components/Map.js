@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 const { kakao } = window;
 // const CORS_ANYWHERE_ADDRESS = "";
-// const CORS_ANYWHERE_ADDRESS = "https://cors-anywhere.herokuapp.com/";
+const CORS_ANYWHERE_ADDRESS = "https://cors-anywhere.herokuapp.com/";
 // const CORS_ANYWHERE_ADDRESS = "https://cors.bridged.cc/";
 const Map = ({
   searchAddress,
@@ -18,7 +18,7 @@ const Map = ({
   centerBoard,
 }) => {
   const location = useLocation();
-  const locationArray = location.pathname.split("/");
+  // const locationArray = location.pathname.split("/");
   // if (location.pathname.sp)
   useEffect(() => {
     // console.log(height);
@@ -41,6 +41,7 @@ const Map = ({
       const latlng = e.latLng;
       const geocoder = new kakao.maps.services.Geocoder();
       const coords = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
+      // console.log(latlng.getLat());
       setCenterPosition([latlng.getLat(), latlng.getLng()]);
       map.setCenter(coords);
       // console.log(coords);
@@ -70,9 +71,9 @@ const Map = ({
         // console.log(coords);
         setCenterPosition([result[0].y, result[0].x]);
         map.setCenter(coords);
-        const drow = [-0.001, -0.0005, 0, 0.0005, 0.001];
-        const dcol = [-0.001, -0.0005, 0, 0.0005, 0.001];
-        const height_board = Array.from(Array(5), () => new Array(5));
+        const drow = [0, -0.001, -0.0005, 0.0005, 0.001];
+        // const dcol = [-0.001, -0.0005, 0, 0.0005, 0.001];
+        const height_board = Array.from(Array(3), () => new Array(3));
         // const request_arr = [];
         // for (let row = 0; row < 5; row++) {
         //   for (let col = 0; col < 5; col++) {
@@ -90,16 +91,22 @@ const Map = ({
         // console.log(request_arr);
         const locationsSum = [];
 
-        for (let row = 0; row < 5; row++) {
-          for (let col = 0; col < 5; col++) {
-            locationsSum.push(
-              `${centerPosition[0] + drow[row]},${
-                centerPosition[1] + dcol[col]
-              }`
-            );
-          }
+        for (let row = 1; row < 5; row++) {
+          locationsSum.push(
+            `${+centerPosition[0] + drow[row]},${
+              +centerPosition[1] + drow[row]
+            }`
+          );
+          locationsSum.push(
+            `${+centerPosition[0] + drow[row]},${
+              +centerPosition[1] - drow[row]
+            }`
+          );
         }
-        // console.log(locationsSum.join("|"));
+        locationsSum.push(
+          `${+centerPosition[0] + drow[0]},${+centerPosition[1] - drow[0]}`
+        );
+        console.log(locationsSum.join("|"));
 
         const request = async () => {
           await fetch(
@@ -107,6 +114,9 @@ const Map = ({
               "|"
             )}`
           )
+            // await fetch(
+            //   `https://api.open-elevation.com/api/v1/lookup?locations=${centerPosition[0]},${centerPosition[1]}`
+            // )
             .then((res) => res.json())
             .then((data) => {
               // const tmp_result = Array.from({ length: 5 }, () => new Array(5));
@@ -116,7 +126,8 @@ const Map = ({
               // }
               // console.log(tmp_result);
               setCenterBoard(data.results.map((x) => x.elevation));
-            });
+            })
+            .catch((e) => console.log(e));
         };
         request();
       });

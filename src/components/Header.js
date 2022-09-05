@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = () => {
   return (
     <HeaderDiv>
-      <h1 style={{ fontSize: "50px" }}>피해피해</h1>
+      <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+        <h1 style={{ fontSize: "50px" }}>피해피해</h1>
+      </Link>
     </HeaderDiv>
   );
 };

@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%
   }
   #root {
-    height: 100%
+    height: 50%
   }
 
   *{

@@ -141,7 +141,7 @@ const Map = ({
 
   useEffect(() => {
     if (centerBoard) {
-      setPrediction(centerBoard[12]);
+      setPrediction(centerBoard[8]);
     }
   }, [centerBoard]);
 

@@ -8,8 +8,9 @@ const MainPage = ({
   setSearchAddress,
   searchValue,
   setSearchValue,
+  checkRightAddress,
+  setCheckRightAddress,
 }) => {
-  const [checkRightAddress, setCheckRightAddress] = useState(false);
   const [searchCount, setSearchCount] = useState(0);
   const AddressErrorSign = () => {
     return <h2>주소를 다시 입력해주세요.</h2>;
@@ -23,6 +24,8 @@ const MainPage = ({
         setSearchValue={setSearchValue}
         searchCount={searchCount}
         setSearchCount={setSearchCount}
+        checkRightAddress={checkRightAddress}
+        setCheckRightAddress={setCheckRightAddress}
       />
 
       {searchCount !== 0 && !checkRightAddress && <AddressErrorSign />}

@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import styled from "styled-components";
 import Info from "../components/Info";
 import Map from "../components/Map";
 import MapContainer from "../components/MapContainer";
@@ -10,6 +11,8 @@ const ResultPage = ({
   match,
   setSearchValue,
   searchValue,
+  checkRightAddress,
+  setCheckRightAddress,
 }) => {
   // const [searchAddress, setSearchAddress] = useState("");
   const [prediction, setPrediction] = useState("");
@@ -18,29 +21,45 @@ const ResultPage = ({
 
   return (
     <>
-      <Search
-        searchAddress={searchAddress}
-        setSearchAddress={setSearchAddress}
-        centerPosition={centerPosition}
-        setCenterPosition={setCenterPosition}
-        setCenterBoard={setCenterBoard}
-        centerBoard={centerBoard}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-      <Map
-        searchAddress={searchAddress}
-        setSearchAddress={setSearchAddress}
-        prediction={prediction}
-        setPrediction={setPrediction}
-        centerPosition={centerPosition}
-        setCenterPosition={setCenterPosition}
-        setCenterBoard={setCenterBoard}
-        centerBoard={centerBoard}
-      />
-      <Info searchAddress={searchAddress} prediction={prediction} />
+      <FlexContentsContainer>
+        <Map
+          searchAddress={searchAddress}
+          setSearchAddress={setSearchAddress}
+          prediction={prediction}
+          setPrediction={setPrediction}
+          centerPosition={centerPosition}
+          setCenterPosition={setCenterPosition}
+          setCenterBoard={setCenterBoard}
+          centerBoard={centerBoard}
+        />
+
+        <InfoContainer checkRightAddress={checkRightAddress}>
+          <Search
+            searchAddress={searchAddress}
+            setSearchAddress={setSearchAddress}
+            centerPosition={centerPosition}
+            setCenterPosition={setCenterPosition}
+            setCenterBoard={setCenterBoard}
+            centerBoard={centerBoard}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            setCheckRightAddress={setCheckRightAddress}
+            checkRightAddress={checkRightAddress}
+          />
+
+          <Info searchAddress={searchAddress} prediction={prediction} />
+        </InfoContainer>
+      </FlexContentsContainer>
     </>
   );
 };
+
+const FlexContentsContainer = styled.div`
+  display: flex;
+`;
+
+const InfoContainer = styled.div`
+  margin-left: 50px;
+`;
 
 export default ResultPage;

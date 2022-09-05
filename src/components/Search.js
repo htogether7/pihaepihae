@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 const { kakao } = window;
 const Search = ({
   setSearchAddress,
@@ -13,6 +13,8 @@ const Search = ({
   setSearchValue,
   setSearchCount,
   searchCount,
+  checkRightAddress,
+  setCheckRightAddress,
 }) => {
   // const [searchValue, setSearchValue] = useState("");
 
@@ -72,6 +74,7 @@ const Search = ({
         console.log("주소를 다시 입력해주세요");
       } else {
         setSearchAddress(searchValue);
+        setCheckRightAddress(true);
         navigate(`/result/${result[0].y},${result[0].x}`);
         // console.log(location);
       }
@@ -79,8 +82,17 @@ const Search = ({
   };
   return (
     <form>
-      <AddressInput type="text" onChange={handleChange} />
-      <SubmitButton onClick={handleSubmit}>제출</SubmitButton>
+      <AddressInput
+        type="text"
+        onChange={handleChange}
+        checkRightAddress={checkRightAddress}
+      />
+      <SubmitButton
+        onClick={handleSubmit}
+        checkRightAddress={checkRightAddress}
+      >
+        제출
+      </SubmitButton>
       {/* <input type="submit" onSubmit={handleSubmit} value="제출" /> */}
     </form>
   );
@@ -88,17 +100,36 @@ const Search = ({
 
 const AddressInput = styled.input`
   /* background-color: black; */
-  width: 500px;
-  height: 50px;
-  margin-top: 20%;
-  font-size: 30px;
-  text-align: center;
+  ${(props) =>
+    !props.checkRightAddress
+      ? css`
+          width: 500px;
+          height: 50px;
+          margin-top: 20%;
+          font-size: 30px;
+          text-align: center;
+        `
+      : css`
+          width: 300px;
+          height: 30px;
+          font-size: 20px;
+          text-align: left;
+        `}
 `;
 
 const SubmitButton = styled.button`
-  height: 50px;
-  width: 50px;
-  font-size: 15px;
+  ${(props) =>
+    !props.checkRightAddress
+      ? css`
+          height: 50px;
+          width: 50px;
+          font-size: 15px;
+        `
+      : css`
+          height: 30px;
+          width: 50px;
+          font-size: 15px;
+        `}
 `;
 
 export default Search;

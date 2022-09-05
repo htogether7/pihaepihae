@@ -6,12 +6,11 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
 import { useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 
-const Layout = () => {
+const Layout = ({ checkRightAddress }) => {
   return (
     <>
-      <Header />
       <Outlet />
       <Footer />
     </>
@@ -21,9 +20,14 @@ const Layout = () => {
 function App() {
   const [searchAddress, setSearchAddress] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [checkRightAddress, setCheckRightAddress] = useState(false);
   return (
-    <FlexDiv className="App">
+    <FlexDiv checkRightAddress={checkRightAddress} className="App">
       <GlobalStyle />
+      <Header
+        checkRightAddress={checkRightAddress}
+        setCheckRightAddress={setCheckRightAddress}
+      />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
@@ -34,6 +38,8 @@ function App() {
                 setSearchAddress={setSearchAddress}
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}
+                checkRightAddress={checkRightAddress}
+                setCheckRightAddress={setCheckRightAddress}
               />
             }
           ></Route>
@@ -45,6 +51,8 @@ function App() {
                 setSearchAddress={setSearchAddress}
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}
+                checkRightAddress={checkRightAddress}
+                setCheckRightAddress={setCheckRightAddress}
               />
             }
           ></Route>
@@ -72,11 +80,15 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const FlexDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100%;
+  ${(props) =>
+    !props.checkRightAddress &&
+    css`
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+    `}/* ${(props) => props.checkRightAddress && css``} */
 `;
 
 export default App;

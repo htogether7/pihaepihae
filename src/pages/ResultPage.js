@@ -4,6 +4,8 @@ import Info from "../components/Info";
 import Map from "../components/Map";
 import MapContainer from "../components/MapContainer";
 import Search from "../components/Search";
+import Share from "../components/Share";
+import ShareContainer from "../components/ShareContainer";
 
 const ResultPage = ({
   searchAddress,
@@ -48,6 +50,7 @@ const ResultPage = ({
           />
 
           <Info searchAddress={searchAddress} prediction={prediction} />
+          <ShareContainer />
         </InfoContainer>
       </FlexContentsContainer>
     </>

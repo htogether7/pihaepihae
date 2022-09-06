@@ -8,6 +8,8 @@ import ResultPage from "./pages/ResultPage";
 import { useState } from "react";
 import styled, { createGlobalStyle, css } from "styled-components";
 
+const { Kakao } = window;
+Kakao.init(process.env.REACT_APP_MAP_CLIENT_ID);
 const Layout = ({ checkRightAddress }) => {
   return (
     <>

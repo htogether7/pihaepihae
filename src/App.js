@@ -90,6 +90,7 @@ const FlexDiv = styled.div`
       justify-content: space-evenly;
       align-items: center;
       height: 100%;
+      width: 100%;
     `}/* ${(props) => props.checkRightAddress && css``} */
 `;
 

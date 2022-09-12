@@ -59,6 +59,9 @@ const ResultPage = ({
 
 const FlexContentsContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 `;
 
 const InfoContainer = styled.div`

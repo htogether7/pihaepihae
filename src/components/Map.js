@@ -71,9 +71,9 @@ const Map = ({
         // console.log(coords);
         setCenterPosition([result[0].y, result[0].x]);
         map.setCenter(coords);
-        const drow = [0, -0.001, -0.0005, 0.0005, 0.001];
+        const distances = [-0.001, 0, 0.001];
         // const dcol = [-0.001, -0.0005, 0, 0.0005, 0.001];
-        const height_board = Array.from(Array(3), () => new Array(3));
+        // const height_board = Array.from(Array(3), () => new Array(3));
         // const request_arr = [];
         // for (let row = 0; row < 5; row++) {
         //   for (let col = 0; col < 5; col++) {
@@ -91,21 +91,15 @@ const Map = ({
         // console.log(request_arr);
         const locationsSum = [];
 
-        for (let row = 1; row < 5; row++) {
-          locationsSum.push(
-            `${+centerPosition[0] + drow[row]},${
-              +centerPosition[1] + drow[row]
-            }`
-          );
-          locationsSum.push(
-            `${+centerPosition[0] + drow[row]},${
-              +centerPosition[1] - drow[row]
-            }`
-          );
+        for (let row = 0; row < 3; row++) {
+          for (let col = 0; col < 3; col++) {
+            locationsSum.push(
+              `${+centerPosition[0] + distances[row]},${
+                +centerPosition[1] + distances[col]
+              }`
+            );
+          }
         }
-        locationsSum.push(
-          `${+centerPosition[0] + drow[0]},${+centerPosition[1] - drow[0]}`
-        );
         console.log(locationsSum.join("|"));
 
         const request = async () => {
@@ -125,6 +119,7 @@ const Map = ({
               //   console.log(data[i]);
               // }
               // console.log(tmp_result);
+              console.log(data);
               setCenterBoard(data.results.map((x) => x.elevation));
             })
             .catch((e) => console.log(e));
@@ -141,7 +136,41 @@ const Map = ({
 
   useEffect(() => {
     if (centerBoard) {
-      setPrediction(centerBoard[8]);
+      console.log(centerBoard);
+      const centerHeight = centerBoard[4];
+      const inclinationBoard = Array.from({ length: 3 }, () => new Array(3));
+      for (let i = 0; i < 9; i++) {
+        inclinationBoard[parseInt(i / 3)][i % 3] =
+          centerBoard[i] - centerHeight;
+      }
+      // console.log(inclinationBoard);
+      let valleyCount = 0;
+      if (inclinationBoard[0][0] > 0 && inclinationBoard[2][2] > 0) {
+        valleyCount++;
+      }
+      if (inclinationBoard[2][0] > 0 && inclinationBoard[0][2] > 0) {
+        valleyCount++;
+      }
+      if (inclinationBoard[1][0] > 0 && inclinationBoard[1][2] > 0) {
+        valleyCount++;
+      }
+      if (inclinationBoard[0][1] > 0 && inclinationBoard[2][1] > 0) {
+        valleyCount++;
+      }
+
+      if (valleyCount === 0) {
+        setPrediction("매우 안전합니다.");
+      } else if (valleyCount === 1) {
+        setPrediction("안전합니다");
+      } else if (valleyCount === 2) {
+        setPrediction("비교적 안전합니다.");
+      } else if (valleyCount === 3) {
+        setPrediction("폭우 시 대비가 필요합니다.");
+      } else if (valleyCount === 4) {
+        setPrediction("완벽한 골짜기 지형입니다. 대비가 필요합니다.");
+      }
+
+      // setPrediction(centerBoard[8]);
     }
   }, [centerBoard]);
 

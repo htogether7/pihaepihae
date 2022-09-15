@@ -23,6 +23,10 @@ const Search = ({
     // console.log(searchValue);
   };
 
+  if (searchAddress) {
+    console.log("주소가 존재합니다.");
+  }
+
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -59,8 +63,8 @@ const Search = ({
   }, [searchAddress]);
 
   useEffect(() => {
-    console.log(checkRightSearch);
-  }, [checkRightSearch]);
+    console.log(searchAddress);
+  }, [searchAddress]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -98,6 +102,7 @@ const Search = ({
     <>
       <form>
         <AddressInput
+          value={searchValue}
           type="text"
           onChange={handleChange}
           checkRightAddress={checkRightAddress}

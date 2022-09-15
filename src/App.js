@@ -1,7 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import MapContainer from "./components/MapContainer";
 import { Routes, Route, Outlet } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";

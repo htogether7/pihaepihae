@@ -17,7 +17,7 @@ const Search = ({
   setCheckRightAddress,
 }) => {
   // const [searchValue, setSearchValue] = useState("");
-
+  const [checkRightSearch, setCheckRightSearch] = useState(false);
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     // console.log(searchValue);
@@ -58,6 +58,10 @@ const Search = ({
     }
   }, [searchAddress]);
 
+  useEffect(() => {
+    console.log(checkRightSearch);
+  }, [checkRightSearch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const geocoder = new kakao.maps.services.Geocoder();
@@ -71,30 +75,43 @@ const Search = ({
 
     geocoder.addressSearch(searchValue, (result, status) => {
       if (status !== kakao.maps.services.Status.OK) {
+        setCheckRightSearch(true);
+        // console.log(checkRightSearch);
+
+        // console.log(checkRightSearch);
+
+        // console.log(checkRightSearch);
+        // setTimeout(() => setCheckRightSearch(false), 100);
         console.log("주소를 다시 입력해주세요");
       } else {
         setSearchAddress(searchValue);
         setCheckRightAddress(true);
+        // console.log("hi");
+        console.log("검색 완료");
+        // console.log(checkRightSearch);
         navigate(`/result/${result[0].y},${result[0].x}`);
         // console.log(location);
       }
     });
   };
   return (
-    <form>
-      <AddressInput
-        type="text"
-        onChange={handleChange}
-        checkRightAddress={checkRightAddress}
-      />
-      <SubmitButton
-        onClick={handleSubmit}
-        checkRightAddress={checkRightAddress}
-      >
-        제출
-      </SubmitButton>
-      {/* <input type="submit" onSubmit={handleSubmit} value="제출" /> */}
-    </form>
+    <>
+      <form>
+        <AddressInput
+          type="text"
+          onChange={handleChange}
+          checkRightAddress={checkRightAddress}
+        />
+        <SubmitButton
+          onClick={handleSubmit}
+          checkRightAddress={checkRightAddress}
+        >
+          제출
+        </SubmitButton>
+        {/* <input type="submit" onSubmit={handleSubmit} value="제출" /> */}
+      </form>
+      {checkRightSearch && <div>주소를 다시 입력해주세요</div>}
+    </>
   );
 };
 

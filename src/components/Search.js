@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 const { kakao } = window;
@@ -18,10 +18,15 @@ const Search = ({
 }) => {
   // const [searchValue, setSearchValue] = useState("");
   const [checkRightSearch, setCheckRightSearch] = useState(false);
-  const handleChange = (e) => {
-    setSearchValue(e.target.value);
-    // console.log(searchValue);
-  };
+
+  const handleChange = useCallback(
+    (e) => {
+      // console.log("실행");
+      setSearchValue(e.target.value);
+      // console.log(searchValue);
+    },
+    [setSearchValue]
+  );
 
   if (searchAddress) {
     console.log("주소가 존재합니다.");
@@ -62,9 +67,9 @@ const Search = ({
     }
   }, [searchAddress]);
 
-  useEffect(() => {
-    console.log(searchAddress);
-  }, [searchAddress]);
+  // useEffect(() => {
+  //   console.log(searchAddress);
+  // }, [searchAddress]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -154,4 +159,4 @@ const SubmitButton = styled.button`
         `}
 `;
 
-export default Search;
+export default memo(Search);

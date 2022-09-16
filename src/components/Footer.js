@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 
 const Footer = () => {
@@ -13,4 +13,4 @@ const FooterDiv = styled.div`
   text-align: center;
 `;
 
-export default Footer;
+export default memo(Footer);

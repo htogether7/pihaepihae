@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const { kakao } = window;
@@ -26,4 +26,4 @@ const InfoText = styled.div`
   margin-top: 30px;
 `;
 
-export default Info;
+export default memo(Info);

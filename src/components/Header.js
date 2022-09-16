@@ -1,13 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { memo, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-const Header = ({ checkRightAddress, setCheckRightAddress }) => {
+const Header = ({
+  checkRightAddress,
+  setCheckRightAddress,
+  setSearchValue,
+}) => {
+  const location = useLocation();
+  const locationArray = location.pathname.split("/");
+  useEffect(() => {
+    if (locationArray.length === 3) {
+      setCheckRightAddress(true);
+    }
+  }, []);
+
   return (
     <HeaderDiv checkRightAddress={checkRightAddress}>
       <Link
         to="/"
-        onClick={() => setCheckRightAddress(false)}
+        onClick={() => {
+          setCheckRightAddress(false);
+          setSearchValue("");
+        }}
         style={{ textDecoration: "none", color: "black" }}
         // position={checkRightAddress ? }
       >
@@ -41,4 +56,4 @@ const HeaderDiv = styled.div`
       margin-top: 20%;
     `}
 `;
-export default Header;
+export default memo(Header);

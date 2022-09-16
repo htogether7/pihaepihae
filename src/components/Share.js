@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 const { Kakao } = window;
 const Share = () => {
-  const onClickShare = () => {
+  const onClickShare = useCallback(() => {
     Kakao.Share.sendCustom({
       templateId: 82583,
       templateArgs: {
@@ -10,7 +10,8 @@ const Share = () => {
         description: "설명 영역입니다.",
       },
     });
-  };
+  }, []);
+
   return (
     <button id="share-button" onClick={onClickShare}>
       공유

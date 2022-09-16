@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Share from "./Share";
 
 const ShareContainer = () => {
@@ -9,4 +9,4 @@ const ShareContainer = () => {
   );
 };
 
-export default ShareContainer;
+export default memo(ShareContainer);

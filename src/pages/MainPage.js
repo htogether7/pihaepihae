@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import Search from "../components/Search";
 
 const { kakao } = window;
@@ -33,4 +33,4 @@ const MainPage = ({
   );
 };
 
-export default MainPage;
+export default memo(MainPage);

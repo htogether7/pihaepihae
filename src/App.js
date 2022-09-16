@@ -4,19 +4,20 @@ import Footer from "./components/Footer";
 import { Routes, Route, Outlet } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
-import { useState } from "react";
+import { memo, useState } from "react";
 import styled, { createGlobalStyle, css } from "styled-components";
 
 const { Kakao } = window;
 Kakao.init(process.env.REACT_APP_MAP_CLIENT_ID);
-const Layout = ({ checkRightAddress }) => {
-  return (
-    <>
-      <Outlet />
-      <Footer />
-    </>
-  );
-};
+
+// const Layout = memo(({ checkRightAddress }) => {
+//   return (
+//     <>
+//       <Outlet />
+//       <Footer />
+//     </>
+//   );
+// });
 
 function App() {
   const [searchAddress, setSearchAddress] = useState("");
@@ -26,11 +27,38 @@ function App() {
     <FlexDiv checkRightAddress={checkRightAddress} className="App">
       <GlobalStyle />
       <Header
+        setSearchValue={setSearchValue}
         checkRightAddress={checkRightAddress}
         setCheckRightAddress={setCheckRightAddress}
       />
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <MainPage
+              searchAddress={searchAddress}
+              setSearchAddress={setSearchAddress}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              checkRightAddress={checkRightAddress}
+              setCheckRightAddress={setCheckRightAddress}
+            />
+          }
+        ></Route>
+        <Route
+          path="result/:address"
+          element={
+            <ResultPage
+              searchAddress={searchAddress}
+              setSearchAddress={setSearchAddress}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              checkRightAddress={checkRightAddress}
+              setCheckRightAddress={setCheckRightAddress}
+            />
+          }
+        ></Route>
+        {/* <Route path="/" element={<Layout />}>
           <Route
             index
             element={
@@ -57,8 +85,9 @@ function App() {
               />
             }
           ></Route>
-        </Route>
+        </Route> */}
       </Routes>
+      <Footer />
     </FlexDiv>
   );
 }

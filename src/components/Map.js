@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 // import axios from "axios";
 // import { resolvePath } from "react-router-dom";
@@ -177,4 +177,5 @@ const Map = ({
   return <div id="map" style={{ width: "500px", height: "500px" }}></div>;
 };
 // console.log(process.env.REACT_APP_MAP_CLIENT_ID);
-export default Map;
+
+export default memo(Map);

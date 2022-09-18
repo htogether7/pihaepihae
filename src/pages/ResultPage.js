@@ -2,9 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import Info from "../components/Info";
 import Map from "../components/Map";
-import MapContainer from "../components/MapContainer";
 import Search from "../components/Search";
-import Share from "../components/Share";
 import ShareContainer from "../components/ShareContainer";
 
 const ResultPage = ({
@@ -33,6 +31,7 @@ const ResultPage = ({
           setCenterPosition={setCenterPosition}
           setCenterBoard={setCenterBoard}
           centerBoard={centerBoard}
+          setSearchValue={setSearchValue}
         />
 
         <InfoContainer checkRightAddress={checkRightAddress}>

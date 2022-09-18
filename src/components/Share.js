@@ -14,7 +14,7 @@ const Share = () => {
 
   return (
     <button id="share-button" onClick={onClickShare}>
-      공유
+      카카오톡으로 공유
     </button>
   );
 };

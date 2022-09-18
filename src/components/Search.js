@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 const { kakao } = window;
@@ -18,19 +18,33 @@ const Search = ({
 }) => {
   // const [searchValue, setSearchValue] = useState("");
   const [checkRightSearch, setCheckRightSearch] = useState(false);
+  // const searchInput = useRef();
 
+  //   searchInput.target.value || searchValue,
+  //   500
+  // );
+  // console.log(searchInput.current.value);
+  // useEffect(() => {
+  //   if (searchInput) {
+
+  //   }
+  // },[])
   const handleChange = useCallback(
     (e) => {
       // console.log("실행");
       setSearchValue(e.target.value);
-      // console.log(searchValue);
     },
     [setSearchValue]
   );
+  // useEffect(() => {
+  //   if (searchInput.current) {
+  //     setSearchValue(searchInput.current.value);
+  //   }
+  // }, [setSearchValue, searchInput.current.value]);
 
-  if (searchAddress) {
-    console.log("주소가 존재합니다.");
-  }
+  // if (searchAddress) {
+  //   console.log("주소가 존재합니다.");
+  // }
 
   const navigate = useNavigate();
 
@@ -60,12 +74,12 @@ const Search = ({
           } else {
             setSearchAddress(result[0].address.address_name);
             // console.log("구주소!");
-            console.log(result[0].address);
+            // console.log(result[0].address);
           }
         }
       );
     }
-  }, [searchAddress]);
+  }, [searchAddress, locationArray, setSearchAddress]);
 
   // useEffect(() => {
   //   console.log(searchAddress);
@@ -109,8 +123,8 @@ const Search = ({
         <AddressInput
           value={searchValue}
           type="text"
-          onChange={handleChange}
           checkRightAddress={checkRightAddress}
+          onChange={handleChange}
         />
         <SubmitButton
           onClick={handleSubmit}

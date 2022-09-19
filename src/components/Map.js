@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 const { kakao } = window;
 // const CORS_ANYWHERE_ADDRESS = "";
-const CORS_ANYWHERE_ADDRESS = "https://cors-anywhere.herokuapp.com/";
+// const CORS_ANYWHERE_ADDRESS = "https://cors-anywhere.herokuapp.com/";
 // const CORS_ANYWHERE_ADDRESS = "https://cors.bridged.cc/";
 const Map = ({
   searchAddress,
@@ -16,8 +16,10 @@ const Map = ({
   centerPosition,
   setCenterBoard,
   centerBoard,
+  detailAddress,
+  setDetailAddress,
 }) => {
-  const location = useLocation();
+  // const location = useLocation();
   // const locationArray = location.pathname.split("/");
   // if (location.pathname.sp)
   useEffect(() => {
@@ -53,10 +55,12 @@ const Map = ({
           // console.log("클릭시 결과", result);
           if (result[0].road_address) {
             setSearchAddress(result[0].road_address.address_name);
+            setDetailAddress(result[0].road_address.address_name);
             console.log("도로명!", result[0].road_address.address_name);
             // console.log(result[0].road_address);
           } else {
             setSearchAddress(result[0].address.address_name);
+            setDetailAddress(result[0].address.address_name);
             console.log("구주소!", result[0].address.address_name);
             // console.log(result[0].address);
           }
@@ -76,6 +80,16 @@ const Map = ({
         const distances = [-0.001, 0, 0.001];
 
         const locationsSum = [];
+
+        if (result[0].road_address) {
+          setDetailAddress(result[0].road_address.address_name);
+          console.log("도로명!", result[0].road_address.address_name);
+          // console.log(result[0].road_address);
+        } else {
+          setDetailAddress(result[0].address.address_name);
+          console.log("구주소!", result[0].address.address_name);
+          // console.log(result[0].address);
+        }
 
         for (let row = 0; row < 3; row++) {
           for (let col = 0; col < 3; col++) {
@@ -99,13 +113,6 @@ const Map = ({
             // )
             .then((res) => res.json())
             .then((data) => {
-              // const tmp_result = Array.from({ length: 5 }, () => new Array(5));
-              // for (let i = 0; i < data.length; i++) {
-              //   tmp_result[Math.floor(i / 5)][i % 5] = data[i];
-              //   console.log(data[i]);
-              // }
-              // console.log(tmp_result);
-              // console.log(data);
               setCenterBoard(data.results.map((x) => x.elevation));
             })
             .catch((e) => console.log(e));

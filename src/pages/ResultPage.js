@@ -9,8 +9,6 @@ const ResultPage = ({
   searchAddress,
   setSearchAddress,
   match,
-  setSearchValue,
-  searchValue,
   checkRightAddress,
   setCheckRightAddress,
 }) => {
@@ -18,6 +16,7 @@ const ResultPage = ({
   const [prediction, setPrediction] = useState("");
   const [centerPosition, setCenterPosition] = useState([33.450701, 126.570667]);
   const [centerBoard, setCenterBoard] = useState([]);
+  const [detailAddress, setDetailAddress] = useState("");
 
   return (
     <>
@@ -31,7 +30,8 @@ const ResultPage = ({
           setCenterPosition={setCenterPosition}
           setCenterBoard={setCenterBoard}
           centerBoard={centerBoard}
-          setSearchValue={setSearchValue}
+          detailAddress={detailAddress}
+          setDetailAddress={setDetailAddress}
         />
 
         <InfoContainer checkRightAddress={checkRightAddress}>
@@ -42,13 +42,13 @@ const ResultPage = ({
             setCenterPosition={setCenterPosition}
             setCenterBoard={setCenterBoard}
             centerBoard={centerBoard}
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
             setCheckRightAddress={setCheckRightAddress}
             checkRightAddress={checkRightAddress}
+            detailAddress={detailAddress}
+            setDetailAddress={setDetailAddress}
           />
 
-          <Info searchAddress={searchAddress} prediction={prediction} />
+          <Info detailAddress={detailAddress} prediction={prediction} />
           <ShareContainer />
         </InfoContainer>
       </FlexContentsContainer>

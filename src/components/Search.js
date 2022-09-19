@@ -9,14 +9,14 @@ const Search = ({
   setCenterPosition,
   centerBoard,
   setCenterBoard,
-  searchValue,
-  setSearchValue,
   setSearchCount,
   searchCount,
   checkRightAddress,
   setCheckRightAddress,
+  detailAddress,
+  setDetailAddress,
 }) => {
-  // const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const [checkRightSearch, setCheckRightSearch] = useState(false);
   // const searchInput = useRef();
 
@@ -29,6 +29,11 @@ const Search = ({
 
   //   }
   // },[])
+  // const inputValue = useRef("");
+  useEffect(() => {
+    setSearchValue(searchAddress);
+  }, [searchAddress]);
+
   const handleChange = useCallback(
     (e) => {
       // console.log("실행");
@@ -36,15 +41,6 @@ const Search = ({
     },
     [setSearchValue]
   );
-  // useEffect(() => {
-  //   if (searchInput.current) {
-  //     setSearchValue(searchInput.current.value);
-  //   }
-  // }, [setSearchValue, searchInput.current.value]);
-
-  // if (searchAddress) {
-  //   console.log("주소가 존재합니다.");
-  // }
 
   const navigate = useNavigate();
 
@@ -53,33 +49,33 @@ const Search = ({
   // useEffect(() => {}, [])
   const locationArray = location.pathname.split("/");
   // console.log(locationArray);
-  useEffect(() => {
-    if (locationArray.length === 3) {
-      const [lat, lng] = locationArray[2].split(",").map((x) => +x);
-      // console.log(lat, lng);
-      const geocoder = new kakao.maps.services.Geocoder();
-      const coords = new kakao.maps.LatLng(lat, lng);
-      // setCenterPosition([lat, lng]);
-      // map.setCenter(coords);
-      // // console.log(coords);
-      // // map.setCenter(coords);
-      geocoder.coord2Address(
-        coords.getLng(),
-        coords.getLat(),
-        (result, status) => {
-          if (result[0].road_address) {
-            setSearchAddress(result[0].road_address.address_name);
-            // console.log("도로명!");
-            // console.log(result[0].road_address);
-          } else {
-            setSearchAddress(result[0].address.address_name);
-            // console.log("구주소!");
-            // console.log(result[0].address);
-          }
-        }
-      );
-    }
-  }, [searchAddress, locationArray, setSearchAddress]);
+  // useEffect(() => {
+  //   if (locationArray.length === 3) {
+  //     const [lat, lng] = locationArray[2].split(",").map((x) => +x);
+  //     // console.log(lat, lng);
+  //     const geocoder = new kakao.maps.services.Geocoder();
+  //     const coords = new kakao.maps.LatLng(lat, lng);
+  //     // setCenterPosition([lat, lng]);
+  //     // map.setCenter(coords);
+  //     // // console.log(coords);
+  //     // // map.setCenter(coords);
+  //     geocoder.coord2Address(
+  //       coords.getLng(),
+  //       coords.getLat(),
+  //       (result, status) => {
+  //         if (result[0].road_address) {
+  //           setSearchAddress(result[0].road_address.address_name);
+  //           // console.log("도로명!");
+  //           // console.log(result[0].road_address);
+  //         } else {
+  //           setSearchAddress(result[0].address.address_name);
+  //           // console.log("구주소!");
+  //           // console.log(result[0].address);
+  //         }
+  //       }
+  //     );
+  //   }
+  // }, [searchAddress, locationArray, setSearchAddress]);
 
   // useEffect(() => {
   //   console.log(searchAddress);

@@ -6,8 +6,6 @@ const { kakao } = window;
 const MainPage = ({
   searchAddress,
   setSearchAddress,
-  searchValue,
-  setSearchValue,
   checkRightAddress,
   setCheckRightAddress,
 }) => {
@@ -20,8 +18,6 @@ const MainPage = ({
       <Search
         searchAddress={searchAddress}
         setSearchAddress={setSearchAddress}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
         searchCount={searchCount}
         setSearchCount={setSearchCount}
         checkRightAddress={checkRightAddress}

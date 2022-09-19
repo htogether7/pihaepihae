@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 const Header = ({
   checkRightAddress,
   setCheckRightAddress,
-  setSearchValue,
+  setSearchAddress,
 }) => {
   const location = useLocation();
   const locationArray = location.pathname.split("/");
@@ -13,7 +13,7 @@ const Header = ({
     if (locationArray.length === 3) {
       setCheckRightAddress(true);
     }
-  }, []);
+  }, [locationArray.length, setCheckRightAddress]);
 
   return (
     <HeaderDiv checkRightAddress={checkRightAddress}>
@@ -21,7 +21,7 @@ const Header = ({
         to="/"
         onClick={() => {
           setCheckRightAddress(false);
-          setSearchValue("");
+          setSearchAddress("");
         }}
         style={{ textDecoration: "none", color: "black" }}
         // position={checkRightAddress ? }

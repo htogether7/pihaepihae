@@ -10,26 +10,16 @@ import styled, { createGlobalStyle, css } from "styled-components";
 const { Kakao } = window;
 Kakao.init(process.env.REACT_APP_MAP_CLIENT_ID);
 
-// const Layout = memo(({ checkRightAddress }) => {
-//   return (
-//     <>
-//       <Outlet />
-//       <Footer />
-//     </>
-//   );
-// });
-
 function App() {
   const [searchAddress, setSearchAddress] = useState("");
-  const [searchValue, setSearchValue] = useState("");
   const [checkRightAddress, setCheckRightAddress] = useState(false);
   return (
     <FlexDiv checkRightAddress={checkRightAddress} className="App">
       <GlobalStyle />
       <Header
-        setSearchValue={setSearchValue}
         checkRightAddress={checkRightAddress}
         setCheckRightAddress={setCheckRightAddress}
+        setSearchAddress={setSearchAddress}
       />
       <Routes>
         <Route
@@ -38,8 +28,6 @@ function App() {
             <MainPage
               searchAddress={searchAddress}
               setSearchAddress={setSearchAddress}
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
               checkRightAddress={checkRightAddress}
               setCheckRightAddress={setCheckRightAddress}
             />
@@ -51,41 +39,11 @@ function App() {
             <ResultPage
               searchAddress={searchAddress}
               setSearchAddress={setSearchAddress}
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
               checkRightAddress={checkRightAddress}
               setCheckRightAddress={setCheckRightAddress}
             />
           }
         ></Route>
-        {/* <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <MainPage
-                searchAddress={searchAddress}
-                setSearchAddress={setSearchAddress}
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                checkRightAddress={checkRightAddress}
-                setCheckRightAddress={setCheckRightAddress}
-              />
-            }
-          ></Route>
-          <Route
-            path="result/:address"
-            element={
-              <ResultPage
-                searchAddress={searchAddress}
-                setSearchAddress={setSearchAddress}
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                checkRightAddress={checkRightAddress}
-                setCheckRightAddress={setCheckRightAddress}
-              />
-            }
-          ></Route>
-        </Route> */}
       </Routes>
       <Footer />
     </FlexDiv>

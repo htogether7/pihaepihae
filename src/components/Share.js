@@ -12,6 +12,8 @@ const Share = () => {
       },
     });
     console.log(location.href);
+    console.log(location.pathname);
+    console.log(location.original);
   }, []);
 
   return (

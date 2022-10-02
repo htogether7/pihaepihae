@@ -1,12 +1,11 @@
 import React, { memo, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import axios from "axios";
 // import { resolvePath } from "react-router-dom";
 
 const { kakao } = window;
-// const CORS_ANYWHERE_ADDRESS = "";
 // const CORS_ANYWHERE_ADDRESS = "https://cors-anywhere.herokuapp.com/";
-// const CORS_ANYWHERE_ADDRESS = "https://cors.bridged.cc/";
+
 const Map = ({
   searchAddress,
   setSearchAddress,
@@ -19,15 +18,8 @@ const Map = ({
   detailAddress,
   setDetailAddress,
 }) => {
-  // const location = useLocation();
-  // const locationArray = location.pathname.split("/");
-  // if (location.pathname.sp)
+  const navigate = useNavigate();
   useEffect(() => {
-    // console.log(height);
-    // console.log("hey");
-
-    // console.log(response);
-    // console.log(promise);
     const container = document.getElementById("map");
     const options = {
       center: new kakao.maps.LatLng(33.450701, 126.570667),
@@ -37,17 +29,10 @@ const Map = ({
     };
     const map = new kakao.maps.Map(container, options);
 
-    // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
-    // console.log(searchAddress);
     kakao.maps.event.addListener(map, "click", (e) => {
       const latlng = e.latLng;
       const geocoder = new kakao.maps.services.Geocoder();
       const coords = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
-      // console.log(latlng.getLat());
-      // setCenterPosition([latlng.getLat(), latlng.getLng()]);
-      // map.setCenter(coords);
-      // console.log(coords);
-      // map.setCenter(coords);
       geocoder.coord2Address(
         coords.getLng(),
         coords.getLat(),
@@ -66,6 +51,23 @@ const Map = ({
           }
         }
       );
+      geocoder.addressSearch(searchAddress, (result, status) => {
+        if (status !== kakao.maps.services.Status.OK) {
+          // console.log(checkRightSearch);
+
+          // console.log(checkRightSearch);
+
+          // console.log(checkRightSearch);
+          // setTimeout(() => setCheckRightSearch(false), 100);
+          console.log("주소를 다시 입력해주세요");
+        } else {
+          // console.log("hi");
+          console.log("검색 완료");
+          // console.log(checkRightSearch);
+          navigate(`/result/${result[0].y},${result[0].x}`);
+          // console.log(location);
+        }
+      });
     });
 
     if (searchAddress) {

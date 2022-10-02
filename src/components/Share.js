@@ -14,6 +14,8 @@ const Share = () => {
     console.log(location.href);
     console.log(location.pathname);
     console.log(location.original);
+    console.log(location);
+    console.log("ㄴlocation");
   }, []);
 
   return (

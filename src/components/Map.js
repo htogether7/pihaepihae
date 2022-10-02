@@ -171,6 +171,5 @@ const Map = ({
 
   return <div id="map" style={{ width: "500px", height: "500px" }}></div>;
 };
-// console.log(process.env.REACT_APP_MAP_CLIENT_ID);
 
 export default memo(Map);

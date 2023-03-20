@@ -2,6 +2,8 @@
 
 침수피해를 예측하고 친구에게 공유합니다.
 
+링크 : https://htogether7.github.io/pihaepihae/
+
 ## 핵심기능
 
 ### 주소 검색

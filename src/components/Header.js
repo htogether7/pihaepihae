@@ -1,14 +1,14 @@
-import React, { memo, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import styled, { css } from "styled-components";
+import React, { memo, useContext, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { stateContext } from '../context/StateProvider';
 
-const Header = ({
-  checkRightAddress,
-  setCheckRightAddress,
-  setSearchAddress,
-}) => {
+const Header = () => {
   const location = useLocation();
-  const locationArray = location.pathname.split("/");
+  const locationArray = location.pathname.split('/');
+  const { setCheckRightAddress, checkRightAddress, setSearchAddress } =
+    useContext(stateContext);
+
   useEffect(() => {
     if (locationArray.length === 3) {
       setCheckRightAddress(true);
@@ -21,15 +21,14 @@ const Header = ({
         to="/"
         onClick={() => {
           setCheckRightAddress(false);
-          setSearchAddress("");
+          setSearchAddress('');
         }}
-        style={{ textDecoration: "none", color: "black" }}
-        // position={checkRightAddress ? }
+        style={{ textDecoration: 'none', color: 'black' }}
       >
         <h1
           style={{
-            fontSize: `${checkRightAddress ? "20px" : "50px"}`,
-            display: `${checkRightAddress ? "inline-block" : ""}`,
+            fontSize: `${checkRightAddress ? '20px' : '50px'}`,
+            display: `${checkRightAddress ? 'inline-block' : ''}`,
           }}
         >
           피해피해
@@ -44,9 +43,10 @@ const HeaderDiv = styled.div`
     props.checkRightAddress &&
     css`
       width: 100%;
-      position: relative;
+      position: fixed;
       text-align: left;
       padding-left: 10px;
+      top: 0;
       /* margin-left: 10px; */
     `};
   ${(props) =>

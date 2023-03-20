@@ -1,52 +1,31 @@
-import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { Routes, Route, Outlet } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import ResultPage from "./pages/ResultPage";
-import { memo, useState } from "react";
-import styled, { createGlobalStyle, css } from "styled-components";
+import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import ResultPage from './pages/ResultPage';
+import { memo, useState } from 'react';
+import styled, { createGlobalStyle, css } from 'styled-components';
+import StateProvider from './context/StateProvider';
 
 const { Kakao } = window;
 Kakao.init(process.env.REACT_APP_MAP_CLIENT_ID);
 
 function App() {
-  const [searchAddress, setSearchAddress] = useState("");
-  const [checkRightAddress, setCheckRightAddress] = useState(false);
+  // const [searchAddress, setSearchAddress] = useState('');
+  // const [checkRightAddress, setCheckRightAddress] = useState(false);
   return (
-    <FlexDiv checkRightAddress={checkRightAddress} className="App">
-      <GlobalStyle />
-      <Header
-        checkRightAddress={checkRightAddress}
-        setCheckRightAddress={setCheckRightAddress}
-        setSearchAddress={setSearchAddress}
-      />
-      <Routes>
-        <Route
-          index
-          element={
-            <MainPage
-              searchAddress={searchAddress}
-              setSearchAddress={setSearchAddress}
-              checkRightAddress={checkRightAddress}
-              setCheckRightAddress={setCheckRightAddress}
-            />
-          }
-        ></Route>
-        <Route
-          path="result/:address"
-          element={
-            <ResultPage
-              searchAddress={searchAddress}
-              setSearchAddress={setSearchAddress}
-              checkRightAddress={checkRightAddress}
-              setCheckRightAddress={setCheckRightAddress}
-            />
-          }
-        ></Route>
-      </Routes>
-      <Footer />
-    </FlexDiv>
+    <StateProvider>
+      <FlexDiv className="App">
+        <GlobalStyle />
+        <Header />
+        <Routes>
+          <Route index element={<MainPage />}></Route>
+          <Route path="result/:address" element={<ResultPage />}></Route>
+        </Routes>
+        <Footer />
+      </FlexDiv>
+    </StateProvider>
   );
 }
 

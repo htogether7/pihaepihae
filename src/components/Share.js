@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 
 const { Kakao, location } = window;
 const Share = () => {
@@ -6,17 +6,12 @@ const Share = () => {
     Kakao.Share.sendCustom({
       templateId: 82583,
       templateArgs: {
-        title: "제목 영역입니다.",
-        description: "설명 영역입니다.",
-        requestUrl: location.origin + location.pathname,
+        title: '제목 영역입니다.',
+        description: '설명 영역입니다.',
+        requestUrl: location.origin,
         pagePathname: location.pathname,
       },
     });
-    console.log(location.href);
-    console.log(location.pathname);
-    console.log(location.original);
-    console.log(location);
-    console.log("ㄴlocation");
   }, []);
 
   return (

@@ -1,29 +1,18 @@
-import React, { memo, useState } from "react";
-import Search from "../components/Search";
+import React, { memo, useContext } from 'react';
+import Search from '../components/Search';
+import { stateContext } from '../context/StateProvider';
+// const { kakao } = window;
 
-const { kakao } = window;
+const MainPage = () => {
+  const { searchCount, checkRightAddress } = useContext(stateContext);
 
-const MainPage = ({
-  searchAddress,
-  setSearchAddress,
-  checkRightAddress,
-  setCheckRightAddress,
-}) => {
-  const [searchCount, setSearchCount] = useState(0);
+  // const [searchCount, setSearchCount] = useState(0);
   const AddressErrorSign = () => {
     return <h2>주소를 다시 입력해주세요.</h2>;
   };
   return (
     <>
-      <Search
-        searchAddress={searchAddress}
-        setSearchAddress={setSearchAddress}
-        searchCount={searchCount}
-        setSearchCount={setSearchCount}
-        checkRightAddress={checkRightAddress}
-        setCheckRightAddress={setCheckRightAddress}
-      />
-
+      <Search />
       {searchCount !== 0 && !checkRightAddress && <AddressErrorSign />}
     </>
   );

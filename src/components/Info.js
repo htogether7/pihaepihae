@@ -1,10 +1,11 @@
-import React, { memo, useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { memo, useContext, useEffect } from 'react';
+import styled from 'styled-components';
+import { stateContext } from '../context/StateProvider';
 
-const { kakao } = window;
-
-const Info = ({ detailAddress, prediction }) => {
-  const [damagePrediction, setDamagePrediction] = useState(0);
+const Info = () => {
+  const { setDamagePrediction, detailAddress, prediction, damagePrediction } =
+    useContext(stateContext);
+  // const [damagePrediction, setDamagePrediction] = useState(0);
 
   useEffect(() => {
     setDamagePrediction(prediction);
@@ -13,7 +14,7 @@ const Info = ({ detailAddress, prediction }) => {
   if (detailAddress) {
     return (
       <InfoText>
-        <div style={{ fontSize: "30px", marginBottom: "30px" }}>
+        <div style={{ fontSize: '30px', marginBottom: '30px' }}>
           {detailAddress}
         </div>
         <div>침수 예상 : {damagePrediction}</div>

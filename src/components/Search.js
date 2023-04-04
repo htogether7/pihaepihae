@@ -4,8 +4,6 @@ import styled, { css } from 'styled-components';
 import { stateContext } from '../context/StateProvider';
 const { kakao } = window;
 const Search = () => {
-  // const [searchValue, setSearchValue] = useState('');
-  // const [checkRightSearch, setCheckRightSearch] = useState(true);
   const {
     searchValue,
     setSearchValue,
@@ -16,16 +14,9 @@ const Search = () => {
   } = useContext(stateContext);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setSearchValue(searchAddress);
-  // });
-
-  const handleChange = useCallback(
-    (e) => {
-      setSearchValue(e.target.value);
-    },
-    [setSearchValue],
-  );
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +28,7 @@ const Search = () => {
       } else {
         setSearchAddress(searchValue);
         setCheckRightAddress(true);
+        setCheckRightSearch(true);
         navigate(`/result/${result[0].y},${result[0].x}`);
       }
     });

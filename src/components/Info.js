@@ -5,11 +5,10 @@ import { stateContext } from '../context/StateProvider';
 const Info = () => {
   const { setDamagePrediction, detailAddress, prediction, damagePrediction } =
     useContext(stateContext);
-  // const [damagePrediction, setDamagePrediction] = useState(0);
 
   useEffect(() => {
     setDamagePrediction(prediction);
-  }, [detailAddress, prediction]);
+  });
 
   if (detailAddress) {
     return (

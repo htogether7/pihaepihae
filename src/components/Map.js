@@ -1,11 +1,8 @@
-import React, { memo, useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { memo, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { stateContext } from '../context/StateProvider';
-// import axios from "axios";
-// import { resolvePath } from "react-router-dom";
 
 const { kakao } = window;
-const CORS_ANYWHERE_ADDRESS = 'https://cors-anywhere.herokuapp.com/';
 
 const Map = () => {
   const navigate = useNavigate();
@@ -19,6 +16,7 @@ const Map = () => {
     centerPosition,
     setCenterBoard,
   } = useContext(stateContext);
+
   useEffect(() => {
     const container = document.getElementById('map');
     const options = {

@@ -10,7 +10,6 @@ const ResultPage = () => {
   // const [centerPosition, setCenterPosition] = useState([33.450701, 126.570667]);
   // const [centerBoard, setCenterBoard] = useState([]);
   // const [detailAddress, setDetailAddress] = useState('');
-
   return (
     <>
       <FlexContentsContainer>

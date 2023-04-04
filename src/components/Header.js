@@ -46,8 +46,7 @@ const HeaderDiv = styled.div`
       position: fixed;
       text-align: left;
       padding-left: 10px;
-      top: 0;
-      /* margin-left: 10px; */
+      top: 0;=
     `};
   ${(props) =>
     !props.checkRightAddress &&

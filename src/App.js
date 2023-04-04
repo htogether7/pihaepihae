@@ -1,10 +1,9 @@
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import ResultPage from './pages/ResultPage';
-import { memo, useState } from 'react';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import StateProvider from './context/StateProvider';
 
@@ -12,8 +11,6 @@ const { Kakao } = window;
 Kakao.init(process.env.REACT_APP_MAP_CLIENT_ID);
 
 function App() {
-  // const [searchAddress, setSearchAddress] = useState('');
-  // const [checkRightAddress, setCheckRightAddress] = useState(false);
   return (
     <StateProvider>
       <FlexDiv className="App">

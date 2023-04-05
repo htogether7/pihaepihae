@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { stateContext } from '../context/StateProvider';
 
 const { kakao } = window;
-
 const Map = () => {
   const navigate = useNavigate();
   const {
@@ -84,7 +83,9 @@ const Map = () => {
 
         const request = async () => {
           await fetch(
-            `https://api.open-elevation.com/api/v1/lookup?locations=${locationsSum.join(
+            `${
+              process.env.REACT_APP_KOYEB_URL
+            }https://api.open-elevation.com/api/v1/lookup?locations=${locationsSum.join(
               '|',
             )}`,
           )

@@ -11,6 +11,7 @@ const Search = () => {
     setCheckRightSearch,
     setSearchAddress,
     setCheckRightAddress,
+    searchAddress,
   } = useContext(stateContext);
   const navigate = useNavigate();
 
@@ -29,6 +30,10 @@ const Search = () => {
         setSearchAddress(searchValue);
         setCheckRightAddress(true);
         setCheckRightSearch(true);
+        localStorage.setItem('y', result[0].y);
+        localStorage.setItem('x', result[0].y);
+        localStorage.setItem('address', searchValue);
+
         navigate(`/result/${result[0].y},${result[0].x}`);
       }
     });

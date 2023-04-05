@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Info from '../components/Info';
 import Map from '../components/Map';
 import Search from '../components/Search';
 import ShareContainer from '../components/ShareContainer';
+import { stateContext } from '../context/StateProvider';
 const ResultPage = () => {
-  // const [searchAddress, setSearchAddress] = useState("");
-  // const [prediction, setPrediction] = useState('');
-  // const [centerPosition, setCenterPosition] = useState([33.450701, 126.570667]);
-  // const [centerBoard, setCenterBoard] = useState([]);
-  // const [detailAddress, setDetailAddress] = useState('');
+  const {
+    searchValue,
+    setCheckRightSearch,
+    setSearchAddress,
+    setCheckRightAddress,
+  } = useContext(stateContext);
+
+  useEffect(() => {
+    if (localStorage.getItem('x')) {
+      console.log('x가 있음');
+      setSearchAddress(localStorage.getItem('address'));
+      setCheckRightAddress(true);
+      setCheckRightSearch(true);
+    }
+  });
   return (
     <>
       <FlexContentsContainer>
